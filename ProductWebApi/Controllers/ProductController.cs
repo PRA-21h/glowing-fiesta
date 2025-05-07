@@ -21,6 +21,7 @@ namespace ProductWebApi.Controllers
                 {
                     _products.Add (new Product
                     {
+
                         Id = _nextId++,
                         Name = $"Product {_nextId}",
                         Description = "Example",
@@ -57,6 +58,12 @@ namespace ProductWebApi.Controllers
             _products.Add(product);
 
             return CreatedAtAction(nameof(GetById), new { id = product.Id }, product);
+            
+            if (product == null)    
+                return NotFound();
+            
+            return Ok(product);
+
         }
 
         // ✅ UPDATE
