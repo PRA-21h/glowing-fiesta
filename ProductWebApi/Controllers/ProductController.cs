@@ -35,7 +35,7 @@ namespace ProductWebApi.Controllers
         [HttpGet]
         public IEnumerable<Product> GetAll()
         {
-            return _products;
+            return [];
         }
 
         // ✅ READ ONE
