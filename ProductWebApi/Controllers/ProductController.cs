@@ -24,7 +24,7 @@ namespace ProductWebApi.Controllers
                         Id = _nextId++,
                         Name = $"Product {_nextId}",
                         Description = "Example",
-                        CreationDate = DateTime.Now.AddDays(-i),
+                        CreationDate = DateTime.Now.AddDays(++i),
                         OnStorage = i * 3
                     });
                 }
