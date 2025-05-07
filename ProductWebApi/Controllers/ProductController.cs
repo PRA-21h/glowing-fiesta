@@ -19,12 +19,12 @@ namespace ProductWebApi.Controllers
             {
                 for (int i = 0; i < 5; i++)
                 {
-                    _products.Add(new Product
+                    _products.Add (new Product
                     {
                         Id = _nextId++,
                         Name = $"Product {_nextId}",
                         Description = "Example",
-                        CreationDate = DateTime.Now.AddDays(-i),
+                        CreationDate = DateTime.Now.AddDays(++i),
                         OnStorage = i * 3
                     });
                 }
@@ -47,7 +47,6 @@ namespace ProductWebApi.Controllers
             {
                 return Ok(null);
             }
-
             return product;
         }
 
@@ -64,6 +63,9 @@ namespace ProductWebApi.Controllers
         [HttpPut("{id}")]
         public IActionResult Update(int id, Product updated)
         {
+            if (existing == null)
+                return NotFound();
+
             var existing = _products.FirstOrDefault(p => p.Id == id);
 
             existing.Name = updated.Name;
@@ -76,6 +78,9 @@ namespace ProductWebApi.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
+            if (existing == null)
+                return NotFound();
+
             var existing = _products.FirstOrDefault(p => p.Id == id);
 
             _products.Remove(existing);
